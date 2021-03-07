@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <style>
+      html {
+        display: flex;
+        justify-content: center;
+      }
+      h1 {
+        text-align: center;
+        background-color: #4C230A;
+        color: white;
+        padding: 10px;
+      }
+      table {
+        text-align: center;
+        padding: 10px;
+        background-color: wheat;
+        width: 500px;
+      }
+      input{
+        border-radius: 5px;
+        background-color: #4C230A; 
+        color: white;
+        padding: 5px;
+        width: 80px;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+      }
+      .search label {
+        display: flex;
+        align-items: center;
+      }
+      .search .textbox {
+        background-color: white;
+        color: black;
+        border-radius: 0;
+        width: 150px;
+        margin: 0 10px;
+      }
+  </style>
+  <body>
+    <h1>Account - List</h1>
+    <table>
+        <div class="search">
+            <label>UserId：</label>
+            <input type="text" name="suserid" value="<%=user  %>" placeholder="input the userid" class="textbox">
+            <input type="button" name="sSearch" value="Search" onclick="Search();">
+        </div>
+        <tr>
+            <th>id</th>
+            <th>userid</th>
+            <th>password</th>
+            <th>email</th>
+        </tr>
+        <% for ( var i = 0 ; i < data.length ; i++){ %>
+            <tr>
+                <td>
+                    <%= data[i].id  %>
+                </td>
+                <td>
+                    <%= data[i].userid  %>
+                </td>
+                <td>
+                    <%= data[i].password  %>
+                </td>
+                <td>
+                    <%= data[i].email  %>
+                </td>
+                <td>
+                    <input type="button" name="edit" value="Edit" onclick="Edit('<%= data[i].id  %>');" />
+                </td>
+                <td>
+                    <input type="button" name="delete" value="Delete" onclick="Delete('<%= data[i].id  %>');" />
+                </td>
+
+            </tr>
+            <% } %>
+    </table>
+    <div>
+        <input type="submit" value="Add" onclick="javascript: location.href='add'">
+    </div>
+
+    <script> 
+        function Edit(id) {
+            window.location.href = "/userEdit?id=" + id;
+        }
+
+        function Delete(id) {
+            var rs = confirm('Confirm to delete?');
+            if (rs) {
+                window.location.href = "/userDelete?id=" + id;
+            }
+        }
+
+        function Search() {
+            var userid = document.getElementsByName('suserid')[0].value;
+            window.location.href = "/?user=" + userid;;
+        }
+    </script>
+  </body>
+</html>

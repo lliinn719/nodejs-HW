@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+    </head>
+    <style>
+        html {
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            text-align: center;
+            background-color: #4C230A;
+            color: white;
+            padding: 10px;
+        }
+        div {
+            line-height: 32px;
+            background-color: wheat;
+            width: 400px;
+            padding: 10px;
+            text-align: center;
+        }
+        .btn input  {
+            border-radius: 5px;
+            background-color: #4C230A; 
+            color: white;
+            padding: 5px;
+        }
+    </style>
+    <form name="editform" action="userEdit" method="post" accept-charset="utf-8">
+        <h1>Account - Edit</h1>
+        <input type="hidden" name="id" value="<%=data[0].id  %>" />
+        <div>
+            <label>userid：</label>
+            <input type="text" name="userid" placeholder="userid" value="<%=data[0].userid %>" readonly />
+        </div>
+        <div>
+            <label>password：</label>
+            <input type="text" name="password" placeholder="password" value="<%=data[0].password %>" />
+        </div>
+        <div>
+            <label>email：</label>
+            <input type="text" name="email" placeholder="email" value="<%=data[0].email %>">
+        </div>
+        <div class="btn">
+            <input type='submit' value='Submit'>
+            <input type='reset' value='Reset'>
+            <input type='button' value='Back' onclick="javascript: window.history.back();">
+        </div>
+    </form>
+</html>
